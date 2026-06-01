@@ -1,5 +1,5 @@
 name: weather
-description: "A new Flutter project."
+description: "Mausam – A premium weather forecasting app with location‑based forecasts, 7‑day outlook, and hourly details."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

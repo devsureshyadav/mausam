@@ -1,4 +1,4 @@
-package com.example.weather
+package com.nxgen.mausam
 
 import io.flutter.embedding.android.FlutterActivity
 
