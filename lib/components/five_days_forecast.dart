@@ -2,55 +2,24 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:weather/colors/color.dart';
-import 'package:weather/services/forecast_services.dart';
-import 'package:weather/services/weather_services.dart';
+import 'package:weather/provider/weather_provider.dart';
 import 'package:weather/widgets/text.dart';
 
-class SevenDays extends StatefulWidget {
+class SevenDays extends StatelessWidget {
   const SevenDays({super.key});
 
   @override
-  State<SevenDays> createState() => _SevenDaysState();
-}
-
-class _SevenDaysState extends State<SevenDays> {
-  //instance
-  // ForecastWeather? _forecastWeather;
-  final ForecastWeatherService _forecastWeatherService =
-      ForecastWeatherService();
-  final WeatherService _weatherService = WeatherService();
-  //fetch
-  List<dynamic> _forecastList = [];
-  _fetchForecast() async {
-    final cityName = await _weatherService.getCurrentCity();
-    try {
-      final forecast = await _forecastWeatherService.getForecast(cityName);
-      setState(() {
-        _forecastList = forecast;
-      });
-    } catch (error) {
-      throw Exception("Error: $error");
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchForecast();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // final deviceWidth = MediaQuery.of(context).size.width;
-    // final deviceHeight = MediaQuery.of(context).size.height;
+    final forecastList = Provider.of<WeatherProvider>(context).forecastList;
 
     return ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: _forecastList.length,
+        itemCount: forecastList.length,
         itemBuilder: (context, index) {
-          final timeStamp = _forecastList[index]['dt'];
-          final icon = _forecastList[index]['weather'][0]['icon'];
+          final timeStamp = forecastList[index]['dt'];
+          final icon = forecastList[index]['weather'][0]['icon'];
           final date = DateFormat("dd MMMM yyyy")
               .format(DateTime.fromMillisecondsSinceEpoch(timeStamp * 1000));
           final time = DateFormat("hh:mm a")
@@ -108,7 +77,6 @@ class _SevenDaysState extends State<SevenDays> {
               padding: const EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     width: 100,
@@ -122,7 +90,7 @@ class _SevenDaysState extends State<SevenDays> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         myText(
-                            "${_forecastList[index]['weather'][0]['description'][0].toUpperCase()}${_forecastList[index]['weather'][0]['description'].substring(1)}",
+                            "${forecastList[index]['weather'][0]['description'][0].toUpperCase()}${forecastList[index]['weather'][0]['description'].substring(1)}",
                             20,
                             Colors.white),
                         Column(

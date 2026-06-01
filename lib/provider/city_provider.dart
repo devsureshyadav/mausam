@@ -19,7 +19,7 @@ class CityProvider extends ChangeNotifier {
           'name': city['name'],
           'country': city['country'],
           'population': city['population'],
-          'coordinates': city['coordinates'],
+          'coordinates': city['coord'],
           'flag': city['flag'],
         };
       }

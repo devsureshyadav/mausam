@@ -8,17 +8,26 @@ import 'package:http/http.dart' as http;
 import 'package:weather/models/weather_model.dart';
 
 class WeatherService {
-  Future<Weather> getWeather(String city) async {
-    await dotenv.load();
+  Future<Weather> getWeather(double lat, double lon, String cityName) async {
     final response = await http.get(Uri.parse(
-        "https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=${dotenv.env['API_KEY']}"));
+        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m"));
     if (response.statusCode == 200) {
-      return Weather.fromJson(jsonDecode(response.body));
-    } else if (response.statusCode == 404) {
-      throw Exception("City not found");
+      return Weather.fromOpenMeteoJson(jsonDecode(response.body), cityName);
     } else {
       throw Exception("Failed to load weather data....");
     }
+  }
+
+  Future<Position> getCurrentLocation() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    return await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+      ),
+    );
   }
 
   Future<String> getCurrentCity() async {

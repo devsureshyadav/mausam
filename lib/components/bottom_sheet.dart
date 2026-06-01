@@ -79,9 +79,18 @@ class _BottomsheetState extends State<Bottomsheet> {
                           child: InkWell(
                             onTap: () {
                               FocusScope.of(context).unfocus();
-                              Provider.of<WeatherProvider>(context,
-                                      listen: false)
-                                  .setSelectedId(cityData['id'].toString());
+                              final coordinates = cityData['coordinates'];
+                              if (coordinates != null) {
+                                final lat = double.tryParse(coordinates['lat'].toString()) ?? 0.0;
+                                final lon = double.tryParse(coordinates['lon'].toString()) ?? 0.0;
+                                Provider.of<WeatherProvider>(context,
+                                        listen: false)
+                                    .fetchWeather(
+                                        lat,
+                                        lon,
+                                        cityData['name'].toString(),
+                                        cityData['country'].toString());
+                              }
                               Navigator.pop(context);
                             },
                             child: Container(
