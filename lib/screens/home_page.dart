@@ -27,11 +27,13 @@ class _HomePageState extends State<HomePage> {
   //fetch weather
   _fetchWeather() async {
     String? cityName = await _weatherService.getCurrentCity();
-    Get.snackbar(
-        duration: const Duration(seconds: 3),
-        colorText: Colors.white,
-        "Location",
-        "Your residential area is $cityName");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.snackbar(
+          duration: const Duration(seconds: 3),
+          colorText: Colors.white,
+          "Location",
+          "Your residential area is $cityName");
+    });
     try {
       final weather = await _weatherService.getWeather(cityName);
 
@@ -40,10 +42,12 @@ class _HomePageState extends State<HomePage> {
       });
     } catch (e) {
       // throw new Exception("Fetch weather failed");
-      Get.snackbar(
-          colorText: Colors.white,
-          "Error",
-          "Failed to load weather data ha ha ha..");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar(
+            colorText: Colors.white,
+            "Error",
+            "Failed to load weather data ha ha ha..");
+      });
     }
   }
 

@@ -45,17 +45,21 @@ class WeatherService {
       if (placemarks.isNotEmpty) {
         city = placemarks[0].locality;
       } else if (placemarks.isEmpty) {
-        Get.snackbar(
-            duration: const Duration(seconds: 3),
-            colorText: Colors.white,
-            "Error",
-            "Placemark is empty");
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Get.snackbar(
+              duration: const Duration(seconds: 3),
+              colorText: Colors.white,
+              "Error",
+              "Placemark is empty");
+        });
       }
     } catch (e) {
-      Get.snackbar(
-          colorText: Colors.white,
-          "Connection Error",
-          "Check your internet connection and try again");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar(
+            colorText: Colors.white,
+            "Connection Error",
+            "Check your internet connection and try again");
+      });
     }
     // print(placemarks);
     // print("Placemarks: $placemarks");
