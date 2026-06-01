@@ -1,0 +1,92 @@
+/* website/style.css */
+/* Premium dark theme with vibrant accents */
+
+:root {
+  --bg-color: #0f0f0f;
+  --card-bg: #1e1e1e;
+  --accent-primary: #00e5ff; /* Vibrant cyan */
+  --accent-secondary: #d500f9; /* Vibrant pink */
+  --text-primary: #ffffff;
+  --text-secondary: #bbbbbb;
+  --font-family: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 4px solid var(--accent-primary);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.main-card {
+  background: var(--card-bg);
+  margin: 2rem auto;
+  max-width: 380px;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.main-card img {
+  width: 100px;
+  height: 100px;
+}
+
+.temp {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  color: var(--accent-primary);
+}
+
+.info {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+footer {
+  margin-top: auto;
+  background: var(--card-bg);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+footer a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

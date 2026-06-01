@@ -12,18 +12,22 @@ class SevenDays extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final forecastList = Provider.of<WeatherProvider>(context).forecastList;
+    final dailyForecast = Provider.of<WeatherProvider>(context).dailyForecast;
 
     return ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: forecastList.length,
+        itemCount: dailyForecast.length,
         itemBuilder: (context, index) {
-          final timeStamp = forecastList[index]['dt'];
-          final icon = forecastList[index]['weather'][0]['icon'];
-          final date = DateFormat("dd MMMM yyyy")
-              .format(DateTime.fromMillisecondsSinceEpoch(timeStamp * 1000));
-          final time = DateFormat("hh:mm a")
-              .format(DateTime.fromMillisecondsSinceEpoch(timeStamp * 1000));
+          final timeStamp = dailyForecast[index]['dt'] as int;
+          final icon = dailyForecast[index]['weather'][0]['icon'] as String;
+          final tempMax = dailyForecast[index]['temp_max'] as double;
+          final tempMin = dailyForecast[index]['temp_min'] as double;
+          
+          final forecastDate = DateTime.fromMillisecondsSinceEpoch(timeStamp * 1000);
+          final isToday = DateFormat("yyyy-MM-dd").format(forecastDate) ==
+              DateFormat("yyyy-MM-dd").format(DateTime.now());
+          final dayName = isToday ? "Today" : DateFormat("EEE").format(forecastDate);
+          
           String lottieName = "loading";
           switch (icon) {
             case "01d":
@@ -66,44 +70,32 @@ class SevenDays extends StatelessWidget {
           }
 
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
             child: Container(
-              height: 200,
-              width: 300,
+              width: 90,
               decoration: BoxDecoration(
-                color: darkColor.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(15),
+                color: darkColor.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Colors.white.withOpacity(0.08),
+                  width: 1,
+                ),
               ),
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  myText(dayName, 14, Colors.white),
                   SizedBox(
-                    width: 100,
-                    child:
-                        Lottie.asset("./assets/weatherAssets/$lottieName.json"),
+                    height: 40,
+                    width: 40,
+                    child: Lottie.asset("./assets/weatherAssets/$lottieName.json"),
                   ),
-                  const SizedBox(width: 5.0),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        myText(
-                            "${forecastList[index]['weather'][0]['description'][0].toUpperCase()}${forecastList[index]['weather'][0]['description'].substring(1)}",
-                            20,
-                            Colors.white),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            myText(date, 12, Colors.white),
-                            myText(time, 12, Colors.grey),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                  myText(
+                      "${tempMax.toInt()}° / ${tempMin.toInt()}°",
+                      12,
+                      Colors.white70),
                 ],
               ),
             ),

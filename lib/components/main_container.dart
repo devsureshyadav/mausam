@@ -31,6 +31,7 @@ class MainContainer extends StatefulWidget {
 }
 
 class _MainContainerState extends State<MainContainer> {
+  Timer? _timer;
   String time = "";
   String formattedTime = "";
   String amOrPm = "";
@@ -39,9 +40,10 @@ class _MainContainerState extends State<MainContainer> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(
+    _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
+        if (!mounted) return;
         setState(
           () {
             formattedTime =
@@ -51,6 +53,12 @@ class _MainContainerState extends State<MainContainer> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override

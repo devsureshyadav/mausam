@@ -10,8 +10,11 @@ class WeatherProvider extends ChangeNotifier {
   Weather? _currentWeather;
   Weather? get currentWeather => _currentWeather;
 
-  List<dynamic> _forecastList = [];
-  List<dynamic> get forecastList => _forecastList;
+  List<dynamic> _dailyForecast = [];
+  List<dynamic> get dailyForecast => _dailyForecast;
+
+  List<dynamic> _hourlyForecast = [];
+  List<dynamic> get hourlyForecast => _hourlyForecast;
 
   String? _cityName;
   String? get cityName => _cityName;
@@ -34,7 +37,9 @@ class WeatherProvider extends ChangeNotifier {
       _cityName = cityName;
       _countryName = countryName;
       _currentWeather = await _weatherService.getWeather(lat, lon, cityName);
-      _forecastList = await _forecastWeatherService.getForecast(lat, lon);
+      final forecastMap = await _forecastWeatherService.getForecast(lat, lon);
+      _dailyForecast = forecastMap['daily'] ?? [];
+      _hourlyForecast = forecastMap['hourly'] ?? [];
     } catch (e) {
       _errorMessage = "Failed to load weather: $e";
     } finally {
@@ -54,7 +59,9 @@ class WeatherProvider extends ChangeNotifier {
       _cityName = currentCity;
       _countryName = "";
       _currentWeather = await _weatherService.getWeather(position.latitude, position.longitude, currentCity);
-      _forecastList = await _forecastWeatherService.getForecast(position.latitude, position.longitude);
+      final forecastMap = await _forecastWeatherService.getForecast(position.latitude, position.longitude);
+      _dailyForecast = forecastMap['daily'] ?? [];
+      _hourlyForecast = forecastMap['hourly'] ?? [];
     } catch (e) {
       _errorMessage = "Failed to load current location weather: $e";
     } finally {

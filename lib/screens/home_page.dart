@@ -10,6 +10,7 @@ import 'package:weather/components/search_component.dart';
 import 'package:weather/models/weather_model.dart';
 import 'package:weather/provider/weather_provider.dart';
 import 'package:weather/screens/developer_profile.dart';
+import 'package:weather/screens/detailed_forecast.dart';
 import 'package:weather/widgets/text.dart';
 
 class HomePage extends StatefulWidget {
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(right: 15.0),
                 child: IconButton(
                   onPressed: () {
-                    Get.to(() => const DeveloperContactInfo());
+                    Get.to(() => const DeveloperDetailsScreen());
                   },
                   icon: Hero(
                       tag: "Hero",
@@ -110,14 +111,30 @@ class _HomePageState extends State<HomePage> {
                             windSpeed: weather.windSpeed,
                             iconName: weather.icon,
                           ),
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child:
-                                    myText("5 Days Forecast", 18, Colors.white),
-                              )),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                myText("7 Days Forecast", 18, Colors.white),
+                                TextButton(
+                                  onPressed: () {
+                                    Get.to(
+                                        () => const DetailedForecastScreen());
+                                  },
+                                  child: const Text(
+                                    "See All",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 24, 241, 4),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           const SizedBox(
                             height: 120,
                             child: SevenDays(),
