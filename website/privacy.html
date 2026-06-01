@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – Mausam Weather App</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" style="position: absolute;">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        <span>Mausam</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#demo" class="nav-link">Live Widget</a></li>
+        <li><a href="index.html#features" class="nav-link">Features</a></li>
+        <li><a href="index.html#developer" class="nav-link">Developer</a></li>
+        <li><a href="index.html#download" class="nav-btn">Download</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Legal Container -->
+  <main class="legal-page">
+    <div class="legal-container">
+      <div class="legal-header">
+        <h1>Privacy Policy</h1>
+        <div class="legal-meta">Last Updated: June 1, 2026</div>
+      </div>
+      
+      <div class="legal-content">
+        <p>At <strong>Mausam</strong>, accessible from our application and website, one of our main priorities is the privacy of our visitors and users. This Privacy Policy document contains types of information that is collected and recorded by Mausam and how we use it.</p>
+        
+        <h2>1. Information We Collect</h2>
+        <p>To provide you with reliable local weather forecasts, Mausam collects and processes specific data inputs depending on how you interact with the application:</p>
+        <ul>
+          <li><strong>Precise Location Data:</strong> If you grant permission, the application accesses your device's global positioning system (GPS) coordinates. This allows Mausam to determine your exact location and return real-time localized weather data. We do not store your historic coordinates on our servers; location coordinates are used dynamically to poll public meteorological APIs.</li>
+          <li><strong>Manual Search Queries:</strong> When you search for weather in a specific city, we process the text input of that city name to fetch and display the relevant weather results.</li>
+          <li><strong>Device & usage details:</strong> We may collect standard crash logs (via services like Firebase Crashlytics) and anonymous performance metrics to diagnose system errors and optimize app responsive cycles.</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>We use the collected data in various ways, primarily to ensure the application works as intended, including to:</p>
+        <ul>
+          <li>Provide, operate, and maintain the Mausam application and website.</li>
+          <li>Improve, personalize, and expand weather metrics and visual layouts.</li>
+          <li>Analyze how you use Mausam to help us squash bugs and improve code reliability.</li>
+          <li>Fetch real-time atmospheric data from authorized weather API partners by sending localized coordinates (anonymously).</li>
+        </ul>
+
+        <h2>3. Location Data Handling & Protection</h2>
+        <p>Because Mausam relies on your location to show immediate local weather forecast matrices, we take location privacy extremely seriously:</p>
+        <p>Your coordinates are transmitted securely via HTTPS encrypted channels to our third-party weather API suppliers. No personal identifiers (such as name, email, or device ID) are coupled with location queries, ensuring the API providers only receive anonymous latitude/longitude pairs.</p>
+        <p>You can enable or disable precise location tracking at any time through your Android device settings. Disabling location tracking will limit Mausam's ability to fetch automated local weather, though you can still query any city manually using the search bar.</p>
+
+        <h2>4. Third-Party Services</h2>
+        <p>Our application interfaces with external services to compile accurate forecasts. These include:</p>
+        <ul>
+          <li><strong>Weather API Providers:</strong> Public and private weather data providers (e.g. OpenWeatherMap, WeatherAPI) to translate geolocation metrics into readable temperatures.</li>
+          <li><strong>Analytics & Diagnostics:</strong> Optional performance logging platforms that record anonymous metrics when an unexpected software exception occurs.</li>
+        </ul>
+        <p>We encourage users to consult the respective Privacy Policies of these third-party systems for more detailed information.</p>
+
+        <h2>5. Data Security</h2>
+        <p>We implement robust security standards to protect your anonymous data from unauthorized access, alteration, disclosure, or destruction. However, please remember that no method of transmission over the internet, or method of electronic storage is 100% secure.</p>
+
+        <h2>6. Children's Privacy</h2>
+        <p>Mausam does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our platform, we strongly encourage you to contact us immediately, and we will do our best efforts to promptly remove such records.</p>
+
+        <h2>7. Changes to This Privacy Policy</h2>
+        <p>We may update our Privacy Policy from time to time. Thus, we advise you to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted.</p>
+
+        <h2>8. Contact Us</h2>
+        <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:privacy@mausam.example.com" style="color: var(--accent-primary); text-decoration: none;">privacy@mausam.example.com</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-nav">
+        <a href="index.html" class="footer-nav-link">Home</a>
+        <a href="index.html#demo" class="footer-nav-link">Live Widget</a>
+        <a href="index.html#features" class="footer-nav-link">Features</a>
+        <a href="index.html#developer" class="footer-nav-link">Developer</a>
+        <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
+        <a href="terms.html" class="footer-nav-link">Terms &amp; Conditions</a>
+      </div>
+      <p class="footer-copyright">© 2026 Mausam. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

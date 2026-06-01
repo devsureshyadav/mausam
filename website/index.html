@@ -4,39 +4,301 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mausam – Premium Weather App</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Mausam – Beautiful Weather Forecasting App</title>
+  <meta name="description" content="Experience premium weather forecasting with Mausam. Get precise local location-based weather, 7-day outlooks, hourly breakdowns, and robust meteorological indicators in a gorgeous interface." />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        <span>Mausam</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#" class="nav-link">Home</a></li>
+        <li><a href="#demo" class="nav-link">Live Widget</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#developer" class="nav-link">Developer</a></li>
+        <li><a href="#download" class="nav-btn">Download</a></li>
+      </ul>
+      
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
   <header class="hero">
-    <img src="weather_hero_1780329865865.png" alt="Weather hero" class="hero-image" />
-    <div class="hero-content">
-      <h1 class="city-name">Your City</h1>
-      <p class="temperature">22°C</p>
-      <p class="description">Sunny</p>
+    <div class="hero-info">
+      <div class="badge">
+        <i class="fa-solid fa-cloud-sun-rain"></i> Premium Weather App
+      </div>
+      <h1>The Climate,<br><span class="gradient-text">Simply Beautiful.</span></h1>
+      <p>Mausam delivers gorgeous, real-time weather analytics. Navigate hourly wind-flows, check detailed 7-day outlooks, and track global conditions inside a clean, modern interface tailored for you.</p>
+      
+      <div class="cta-group">
+        <a href="#download" class="btn btn-primary">
+          <i class="fa-brands fa-android"></i> Download APK
+        </a>
+        <a href="#demo" class="btn btn-secondary">
+          <i class="fa-solid fa-play"></i> Live Preview
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-display">
+      <div class="hero-bg-glow"></div>
+      <div class="mockup-container">
+        <div class="mockup-frame">
+          <!-- We place the weather hero png provided by the user inside a mobile frame -->
+          <img src="weather_hero_1780329865865.png" alt="Mausam App Dashboard Showcase" />
+        </div>
+      </div>
     </div>
   </header>
 
-  <main class="content">
-    <section class="forecast">
-      <h2>7‑Day Forecast</h2>
-      <div class="forecast-grid" id="forecast-grid">
-        <!-- JavaScript will inject cards here -->
+  <!-- Interactive Live Weather Section -->
+  <section class="interactive-section" id="demo">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="badge"><i class="fa-solid fa-sliders"></i> Interactive Demo</div>
+        <h2>Experience <span class="gradient-text">Mausam Live</span></h2>
+        <p>Preview Mausam's core weather graphics engine directly in your browser. Choose a city to experience our fluid UI animations and comprehensive indicators.</p>
       </div>
-    </section>
-  </main>
+      
+      <div class="widget-layout">
+        <!-- City Selector Buttons -->
+        <div class="city-selector">
+          <div class="city-selector-title">Select a Destination</div>
+          
+          <button class="city-btn active" data-city="kathmandu">
+            <span class="city-btn-name">Kathmandu, NP</span>
+            <span class="city-btn-temp">24°C</span>
+          </button>
+          
+          <button class="city-btn" data-city="newyork">
+            <span class="city-btn-name">New York, US</span>
+            <span class="city-btn-temp">19°C</span>
+          </button>
+          
+          <button class="city-btn" data-city="tokyo">
+            <span class="city-btn-name">Tokyo, JP</span>
+            <span class="city-btn-temp">22°C</span>
+          </button>
+          
+          <button class="city-btn" data-city="london">
+            <span class="city-btn-name">London, UK</span>
+            <span class="city-btn-temp">15°C</span>
+          </button>
+          
+          <button class="city-btn" data-city="sydney">
+            <span class="city-btn-name">Sydney, AU</span>
+            <span class="city-btn-temp">17°C</span>
+          </button>
+        </div>
+        
+        <!-- Live Glassmorphic Widget Card -->
+        <div class="weather-showcase">
+          <div class="weather-widget-glow" id="widget-glow"></div>
+          <div class="weather-widget">
+            <div class="widget-header">
+              <div class="widget-location">
+                <h3 id="w-city">Kathmandu</h3>
+                <span id="w-country">Nepal</span>
+              </div>
+              <div class="widget-date" id="w-date">Mon, June 1</div>
+            </div>
+            
+            <div class="widget-main">
+              <div class="widget-temp-block">
+                <span class="widget-temp" id="w-temp">24°C</span>
+                <span class="widget-desc" id="w-desc">Partly Cloudy</span>
+              </div>
+              <div class="widget-icon-container" id="w-icon">
+                <i class="fa-solid fa-cloud-sun"></i>
+              </div>
+            </div>
+            
+            <!-- Key Metrics Panel -->
+            <div class="widget-metrics">
+              <div class="metric-item">
+                <span class="metric-label">Wind</span>
+                <span class="metric-val" id="w-wind">12 km/h</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">Humidity</span>
+                <span class="metric-val" id="w-humidity">65%</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">UV Index</span>
+                <span class="metric-val" id="w-uv">Moderate</span>
+              </div>
+            </div>
+            
+            <!-- Weekly Forecast Component -->
+            <div class="widget-forecast" id="w-forecast">
+              <!-- Dynamically populated rows in script.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Key Features Showcase Section -->
+  <section class="features-section" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="badge"><i class="fa-solid fa-star"></i> Feature Set</div>
+        <h2>Engineered for <span class="gradient-text">Precision</span></h2>
+        <p>Mausam packs powerful tools to keep you informed about any atmospheric shifts at all times.</p>
+      </div>
+      
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-location-crosshairs"></i>
+          </div>
+          <h3>GPS Auto-Location</h3>
+          <p>Instantly fetch exact atmospheric coordinates to display weather forecasts tailored to where you stand.</p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <h3>Hourly Breakthroughs</h3>
+          <p>Plan your day precisely with hourly temperature profiles, wind direction vectors, and precipitation changes.</p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+          <h3>7‑Day Outlooks</h3>
+          <p>Stay ahead with reliable forecasts showing long-term trends, weekly peaks, and expected rainfall indices.</p>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-wind"></i>
+          </div>
+          <h3>Detailed Metrics</h3>
+          <p>Monitor complex indicators like humidity percentages, UV warnings, atmospheric pressure, and visibility distances.</p>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <h3>Premium Dark UI</h3>
+          <p>Protect your eyes with a custom dark-mode color scheme featuring vibrant weather state accents and micro-animations.</p>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h3>Smart City Search</h3>
+          <p>Instant query processing enables you to explore climate models for thousands of global cities in a flash.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Profile Section -->
+  <section class="developer-section" id="developer">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="badge"><i class="fa-solid fa-code"></i> App Creator</div>
+        <h2>Behind the <span class="gradient-text">Design</span></h2>
+        <p>A look at the developer who crafted the Mausam ecosystem with performance and visual aesthetics in mind.</p>
+      </div>
+      
+      <div class="developer-card">
+        <div class="developer-avatar-container">
+          <div class="developer-avatar-glow"></div>
+          <!-- Premium visual avatar fallback (user icon inside a circular container or nice stock illustration) -->
+          <div class="developer-avatar" style="background: linear-gradient(135deg, #1e1e24 0%, #0a0a0d 100%); display: flex; align-items: center; justify-content: center; color: var(--accent-primary); font-size: 3rem;">
+            <i class="fa-solid fa-user-astronaut"></i>
+          </div>
+        </div>
+        
+        <div class="developer-details">
+          <div class="developer-role">Mobile Architect &amp; Designer</div>
+          <h3 class="developer-name">Suresh Yadav</h3>
+          <p class="developer-bio">Hi, I'm Suresh. I design and build highly performant, custom-themed Android and Web solutions. Mausam was built using Flutter to explore fluid user interfaces, responsive state models, and custom micro-animations powered by geolocated climate data pools.</p>
+          
+          <div class="developer-socials">
+            <a href="https://github.com" target="_blank" class="social-link" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="social-link" title="Twitter">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="mailto:suresh@example.com" class="social-link" title="Email Suresh">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action (Download) -->
+  <section class="cta-section" id="download">
+    <div class="cta-box">
+      <h2>Stay Ahead of the <span class="gradient-text">Storm</span></h2>
+      <p>Download the Mausam application for your Android device now to unlock fully geolocated, real-time atmospheric tracking in standard and detailed formats.</p>
+      
+      <div class="cta-group">
+        <a href="#" class="btn btn-primary">
+          <i class="fa-brands fa-android"></i> Download APK for Android
+        </a>
+        <a href="https://github.com" target="_blank" class="btn btn-secondary">
+          <i class="fa-brands fa-github"></i> View GitHub Repo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer">
-    <nav class="footer-nav">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
-    </nav>
-    <p>© 2026 Mausam. All rights reserved.</p>
+    <div class="footer-container">
+      <div class="footer-nav">
+        <a href="#" class="footer-nav-link">Home</a>
+        <a href="#demo" class="footer-nav-link">Live Widget</a>
+        <a href="#features" class="footer-nav-link">Features</a>
+        <a href="#developer" class="footer-nav-link">Developer</a>
+        <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
+        <a href="terms.html" class="footer-nav-link">Terms &amp; Conditions</a>
+      </div>
+      <p class="footer-copyright">© 2026 Mausam. Crafted with passion by Suresh Yadav. All rights reserved.</p>
+    </div>
   </footer>
 
+  <!-- Script for Interactive Engine -->
   <script src="script.js"></script>
 </body>
 </html>
